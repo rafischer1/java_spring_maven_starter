@@ -56,8 +56,16 @@ Logback - a reliable fast and flexible and configurable for logging in Java usin
 
     * filter - ternary layers to compose specific output
 
+`private final static Logger log = LoggerFactory.getLogger(HelloMaven.class);`
 
-
+```haskell
+public static Logger getLogger(String name)
+Return a logger named according to the name parameter using the statically bound ILoggerFactory instance.
+Parameters:
+name - The name of the logger.
+Returns:
+logger
+```
 
 
 
