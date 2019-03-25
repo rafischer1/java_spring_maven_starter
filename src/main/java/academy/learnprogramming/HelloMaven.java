@@ -8,7 +8,7 @@ public class HelloMaven {
     private static Logger log = LoggerFactory.getLogger(HelloMaven.class);
 
     public static void main(String[] args) {
-//        System.out.println("Hello Maven" + " artman");
+//      System.out.println("Hello Maven");
         log.info("Hello Info");
         log.debug("Hello Debug");
     }
