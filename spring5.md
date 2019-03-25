@@ -67,6 +67,37 @@ Returns:
 logger
 ```
 
+logback is automatically configured at minimal level but can be configured - output to the console
+
+> "root logger" exists by default in a log4j system and cannot be named in the parent/ancestor path
+
+```haskell
+Pattern Conversion:
+
+%date : 2019-3-25 13:21:20,006
+[%thread] : [main]
+[%-5level] : [INFO ] / [DEBUG] //-5 is the max length of that string left justified
+%logger{40} - : academy.learnprogramming.HelloMaven - //{max 40 char}
+%message%n : message string or whatever
+```
+
+```xml
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%date [%thread] [%-5level] %logger{30} : %message%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="academy.learnprogramming" level="DEBUG" />
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>
+```
+
+
 
 
 
