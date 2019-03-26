@@ -25,7 +25,7 @@ public class Main {
         int num = numberGenerator.next();
 
         // log generate number
-        log.info("Number = {}", num);
+        log.info("Random Number = {}", num);
 
         // close context container
         context.close();
