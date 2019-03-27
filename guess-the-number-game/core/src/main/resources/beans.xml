@@ -1,14 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+       <!--xmlns:context="http://www.springframework.org/schema/context"-->
+       <!--xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+       <!--xsi:schemaLocation="http://www.springframework.org/schema/beans-->
+           <!--http://www.springframework.org/schema/beans/spring-beans.xsd-->
+           <!--http://www.springframework.org/schema/context-->
+           <!--http://www.springframework.org/schema/context/spring-context.xsd">-->
 
-    <bean id="numberGenerator" class="academy.learnprogramming.NumberGeneratorIMPL"/>
-    <bean id="game" class="academy.learnprogramming.GameIMPL">
-        <!--ref needs to match the id of the bean-->
-        <!--<constructor-arg ref="numberGenerator"/>-->
-        <property name="numberGenerator" ref="numberGenerator" />
-    </bean>
+    <!--&lt;!&ndash;<context:annotation-config />&ndash;&gt;-->
 
-</beans>
+    <!--&lt;!&ndash; which base package will be scanned for annotated components &ndash;&gt;-->
+    <!--<context:component-scan base-package="academy.learnprogramming" />-->
+
+    <!--&lt;!&ndash;<bean id="numberGenerator" class="academy.learnprogramming.NumberGeneratorIMPL"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;<bean id="game" class="academy.learnprogramming.GameIMPL">&ndash;&gt;-->
+        <!--&lt;!&ndash;ref needs to match the id of the bean&ndash;&gt;-->
+        <!--&lt;!&ndash;<constructor-arg ref="numberGenerator"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="numberGenerator" ref="numberGenerator" />&ndash;&gt;-->
+    <!--&lt;!&ndash;</bean>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />&ndash;&gt;-->
+
+<!--</beans>-->

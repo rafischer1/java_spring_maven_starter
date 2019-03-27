@@ -1,3 +1,5 @@
+# Java/Spring5 Notes and project setup ☕️ + 🀦
+
 ### Java 8 is the miminum requirement to work with
 
 ### kotlin functional programming is supported
@@ -160,6 +162,8 @@ public void setNumG(NumG numG) {
 
 > "name" is the name of the field while "ref" is the id of bean referenced so these could be different strings...
 
+[Spring Docs: Constructor based dep inj](https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-constructor-injection)
+
 #### differences ->
 
 Constructors are for mandatory dependencies - usually used - should have no more than 3 arguments
@@ -168,15 +172,43 @@ Setters are for optional dependencies - default values should be used to avoid h
 
 > Circular dependencies happen when a constructor dep injection gets stuck in a loop. A -> B == B -> A which one goes first? look for a `BeanCurrentlyInCreation` exception. Use setter injection to fix...?
 
+### Bean lifecycle callbacks: where to put them?
 
+* XML: needs consistent naming `<bean id...class.. init-method="reset" />` so all must be "reset"
 
+* XML: `<beans ... default-init="reset" />` bad practice b/c of naming
 
+* javax annotations api: add to dependencies in pom's and use on the method: `@PostContruct` or `@PreDestroy` as lifecycle methods called on the container
 
+### Annotations vs XML callbacks
 
+XML config:
 
++ outside Java classes means separation of concerns, centralized for editing, no recompilation required
 
++ more verbose so it is better for beginners
 
+X typos are common
 
+X not typesafe - verbose and error prone not caught by compiler
+
+Annotations:
+
++ shorter code
+
++ self documenting
+
++ typesafe
+
+X annotations ar ein src code and can be rather spread out to make editing decentralized
+
+X no longer a POJO
+
+X recompilation has to happen often
+
+> Bean definition replaced by `@Component`?
+
+#### @Autowired
 
 
 
