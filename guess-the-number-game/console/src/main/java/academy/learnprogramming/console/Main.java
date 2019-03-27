@@ -39,8 +39,8 @@ public class Main {
         // get messageGenerator bean for game context
         MessageGenerator messageGenerator
                 = context.getBean(MessageGenerator.class);
-        log.info("Get main message: {}", messageGenerator.getMainMessage());
-        log.info("Get result message: {}", messageGenerator.getResultMessage());
+//        log.info("Get main message: {}", messageGenerator.getMainMessage());
+//        log.info("Get result message: {}", messageGenerator.getResultMessage());
 
         // call reset method
         // initialize the reset() call from the beans.xml
