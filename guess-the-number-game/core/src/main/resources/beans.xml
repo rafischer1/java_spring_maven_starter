@@ -5,5 +5,10 @@
            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="numberGenerator" class="academy.learnprogramming.NumberGeneratorIMPL"/>
+    <bean id="game" class="academy.learnprogramming.GameIMPL">
+        <!--ref needs to match the id of the bean-->
+        <!--<constructor-arg ref="numberGenerator"/>-->
+        <property name="numberGenerator" ref="numberGenerator" />
+    </bean>
 
 </beans>

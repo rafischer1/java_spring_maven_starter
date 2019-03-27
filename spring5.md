@@ -129,6 +129,44 @@ Pattern Conversion:
 2019-03-25 14:50:37,353 [main] [DEBUG] o.s.c.s.ClassPathXmlApplicationContext - Closing org.springframework.context.support.ClassPathXmlApplicationContext@1700915, started on Mon Mar 25 14:50:37 MDT 2019
 ```
 
+### Beans and dependency injection
+
+#### Constructor based dep injection w/ bean definition
+
+* xml: `<bean id="game" class="a.lp.GameIMPL" />`
+
+* java: `Game game = context.getBean(Game.class);` passing the class
+
+* GameIMPL container: generate a new container
+
+```java
+public GameIMPL(NumG numG) {
+    this.numG = numg;
+}
+```
+
+* change bean definition: `<constuctor-arg ref="numG" \>`
+
+#### setter based dep injection
+
+```java
+//  Main.java
+
+public void setNumG(NumG numG) {
+    this.numG = numG;
+}
+```
+* bean: `<property name="numG" ref="numG" />`
+
+> "name" is the name of the field while "ref" is the id of bean referenced so these could be different strings...
+
+#### differences ->
+
+Constructors are for mandatory dependencies - usually used - should have no more than 3 arguments
+
+Setters are for optional dependencies - default values should be used to avoid having to do a lot of `not null` checks
+
+> Circular dependencies happen when a constructor dep injection gets stuck in a loop. A -> B == B -> A which one goes first? look for a `BeanCurrentlyInCreation` exception. Use setter injection to fix...?
 
 
 

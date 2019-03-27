@@ -18,7 +18,18 @@ public class GameIMPL implements Game {
     private int remainingGuesses;
     private boolean validNumberRange = true;
 
+    // constructors
+//    public GameIMPL(NumberGenerator numberGenerator) {
+//        this.numberGenerator = numberGenerator;
+//    }
+
+
     // public methods:
+
+    // setters
+    public void setNumberGenerator(NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
+    }
 
     // reset() resets the game at start or on new game
     @Override

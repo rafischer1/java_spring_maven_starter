@@ -21,11 +21,17 @@ public class Main {
         NumberGenerator numberGenerator
                 = context.getBean("numberGenerator", NumberGenerator.class);
 
-        // call method to get rand num
+        // call method to get rand num - next() gets called in two places creating multiple random number calls...
         int num = numberGenerator.next();
 
         // log generate number
         log.info("Random Number = {}", num);
+
+        // get bean for game context
+        Game game = context.getBean(Game.class);
+
+        // call reset method
+        game.reset();
 
         // close context container
         context.close();
