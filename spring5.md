@@ -208,7 +208,59 @@ X recompilation has to happen often
 
 > Bean definition replaced by `@Component`?
 
-#### @Autowired
+#### @Qualifier annotation on a bean and the creation of custom annotations
+
+* Our annotation maxNumber can be applied to fields and methods, retention policy runtime the annotations get compiled by the JVM at runtime
+
+```java
+// in Config class file
+
+@Configuration
+public class GameConfig {
+
+    // fields
+    private int maxNumber = 50;
+
+    private int guessCount = 8;
+
+    // bean methods
+    @Bean
+    @MaxNumber
+    public int maxNumber() {
+        return maxNumber;
+    }
+
+    @Bean
+    @GuessCount
+    public int guessCount() {
+        return guessCount;
+    }
+}
+
+// in MaxNumber annotation file
+
+@Target({ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+@Qualifier
+public @interface MaxNumber {
+
+}
+
+// in IMPL class
+
+@Autowired
+@MaxNumber
+    private int maxNumber;
+
+```
+
+### Autowiring properties
+
+
+
+
+
+
 
 
 
