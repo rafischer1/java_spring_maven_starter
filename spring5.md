@@ -254,11 +254,30 @@ public @interface MaxNumber {
 
 ```
 
-### Autowiring properties
+### Autowiring properties for a `properties` file with String key:value pairs
 
+```haskell
+# game properties
+game.maxNumber = 100
+game.guessCount = 8
+```
 
+in the Config: `Found key 'game.maxNumber' in PropertySource 'class path resource [config/game.properties]' with value of type String`
 
+```java
+@Configuration
+@PropertySource("classpath:config/game.properties")
+public class GameConfig {
 
+    // fields
+    @Value("${game.maxNumber:50}")
+    private int maxNumber;
+    @Value("${game.guessCount}")
+    private int guessCount;
+ ....}
+
+ // : default value if properties fileis not accessed for some reason...
+```
 
 
 
