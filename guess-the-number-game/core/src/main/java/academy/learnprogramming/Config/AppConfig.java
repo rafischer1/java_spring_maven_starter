@@ -28,5 +28,4 @@ public class AppConfig {
     public MessageGenerator messageGenerator() {
         return new MessageGeneratorIMPL();
     }
-
 }

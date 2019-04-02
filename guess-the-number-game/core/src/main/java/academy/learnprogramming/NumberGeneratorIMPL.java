@@ -16,14 +16,25 @@ public class NumberGeneratorIMPL implements NumberGenerator {
     @MaxNumber
     private int maxNumber;
 
+    @Autowired
+    @MinNumber
+    private int minNumber;
+
     // public methods:
     @Override
     public int next() {
-        return random.nextInt(maxNumber);
+        // eg: min = 5 max = 20
+        return random.nextInt((maxNumber - minNumber) + minNumber);
     }
 
     @Override
     public int getMaxNumber() {
         return maxNumber;
     }
+
+    @Override
+    public int getMinNumber() {
+        return minNumber;
+    }
+
 }
