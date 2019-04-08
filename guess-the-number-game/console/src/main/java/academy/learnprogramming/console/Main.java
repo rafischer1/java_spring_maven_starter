@@ -1,15 +1,33 @@
 package academy.learnprogramming.console;
 
-import academy.learnprogramming.Config.AppConfig;
-import academy.learnprogramming.MessageGenerator;
-import academy.learnprogramming.NumberGenerator;
+import academy.learnprogramming.Config.GameConfig;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 //import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+@Slf4j
 public class Main {
+//    private static Logger log = LoggerFactory.getLogger(Main.class);
+
+    private static final String CONFIG_LOCATION = "beans.xml";
+
+    public static void main(String[] args) {
+        log.debug("GTN game");
+
+        // create context (container)
+        ConfigurableApplicationContext context
+//                = new ClassPathXmlApplicationContext(CONFIG_LOCATION);
+                = new AnnotationConfigApplicationContext(GameConfig.class);
+
+        // close context container
+        context.close();
+    }
+}
+
+/* public class Main {
     private static Logger log = LoggerFactory.getLogger(Main.class);
 
     private static final String CONFIG_LOCATION = "beans.xml";
@@ -50,3 +68,4 @@ public class Main {
         context.close();
     }
 }
+*/

@@ -2,23 +2,35 @@ package academy.learnprogramming;
 
 //import org.springframework.stereotype.Component;
 
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
-//@Component
+@Component
 public class NumberGeneratorIMPL implements NumberGenerator {
 
     // fields section:
     private final Random random = new Random();
 
-    @Autowired
-    @MaxNumber
-    private int maxNumber;
+//    @Autowired
+//    @MaxNumber
+    @Getter
+    private final int maxNumber;
+
+//    @Autowired
+//    @MinNumber
+    @Getter
+    private final int minNumber;
+
+    // constructors
 
     @Autowired
-    @MinNumber
-    private int minNumber;
+    public NumberGeneratorIMPL(@MaxNumber int maxNumber, @MinNumber int minNumber) {
+        this.maxNumber = maxNumber;
+        this.minNumber = minNumber;
+    }
 
     // public methods:
     @Override
@@ -27,14 +39,16 @@ public class NumberGeneratorIMPL implements NumberGenerator {
         return random.nextInt((maxNumber - minNumber) + minNumber);
     }
 
-    @Override
-    public int getMaxNumber() {
-        return maxNumber;
-    }
-
-    @Override
-    public int getMinNumber() {
-        return minNumber;
-    }
+//    @Override
+//    public int getMaxNumber() {
+//        return maxNumber;
+//    }
+//
+//    @Override
+//    public int getMinNumber() {
+//        return minNumber;
+//    }
 
 }
+
+// constructor injection will make the fields immutable.

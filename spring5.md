@@ -279,6 +279,72 @@ public class GameConfig {
  // : default value if properties fileis not accessed for some reason...
 ```
 
+### Constructor injection = best practice
+
+AppConfig - remove bean methods and autowiring from data-type declarations
+
+* every class w/ @Component will be annotated by the container `identified candidate` in logs
+
+#### Constructor injection: add the @Autowire on the constructor itself
+
+```java
+@Autowired
+@MinNumber
+private int minNumber;
+
+// becomes
+
+private final int minNumber;
+
+@Autowired
+public numberGenImpl(@MinNumber int minNumber) {
+    this.minNumber = minNumber;
+}
+```
+
+`command O` navigate to any class name
+
+> 1. @Component to class  2. final on autowired fields 3. generate a constructor 4. autowire the constructor and @FieldName annotate the field if required
+
+---
+
+## Lombok - generate boilerplate code
+
+`@Data` - generates POJO objecte which combines a lot of these following annotations
+
+`@Getter` - Lombok automatically generates the getter 
+
+`@Setter` - Lombok automatically generated the setter
+
+`@ToString` - toString() method
+
+`@EqualsAndHashCode` - equals() and hashCode() methods
+
+`@RequiredArgsConstructor` - constructor with required arguments
+
+`@Slf4j` - private final static field for Logger
+
+```java
+@Component
+@Slf4j
+@Getter
+public class GameIMPL implements Game {
+
+    // fields
+    @Getter(AccessLevel.NONE)
+    private final NumberGenerator numberGenerator;
+
+    @Setter
+    private int guess;
+
+    ... }
+```
+
+
+
+
+
+
 
 
 
