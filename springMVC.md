@@ -90,6 +90,31 @@
 
 `cargo:run` will start the localhost using the tomcat servlet
 
+`http://localhost:8080/todo-list/index.html`
+
+deployed successfully w/ index.html served on the apache tomcat servlet
+
+Setting up the MVC servlet with a Java code based approach to register dispatcher server:
+
+Java -> WebConfig.java
+
+```java
+@EnableWebMvc - [allows registers and bean specific to SpringMVC]
+@Configuration
+@ComponentScan(basePackages = "academy.learnprogramming")
+public class WebConfig {
+}
+```
+
+```xml
+<dependency>
+   <groupId>javax.servlet</groupId>
+   <artifactId>javax.servlet-api</artifactId>
+   <version>${servlet-api-version}</version>
+   <scope>provided</scope>
+</dependency>
+```
+
 
                     
 
