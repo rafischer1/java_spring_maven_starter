@@ -115,8 +115,63 @@ public class WebConfig {
 </dependency>
 ```
 
+### CRUD Mapping in Spring
 
-                    
+`@Controller` is the annotation that handles the incoming requests
+`@RequestMapping` - media types, headers, http control CRUD maps
 
+must define a view to display back to users 
+
+> errror: Message Circular view path [hello]: would dispatch back to the current handler URL [/todo-list/hello] again. Check your ViewResolver setup! (Hint: This may be the result of an unspecified view, due to default view name generation.)
+
+Disptacher servlet gets the request and passes it to the Controller to write directly to response body
+
+```java
+@Controller
+public class DemoController {
+
+    // http://localhost:8080/todo-list/hello
+    @ResponseBody
+    @GetMapping("/hello")
+    public String hello() {
+        return "hello";
+    }
+}
+```
+
+### Views with ViewResolver
+
+* mapping between view names and JSP - java server pages
+
+* JavaServer Pages Standard Tag Library - JSTL has control flow and common task events
+
+```java
+@EnableWebMvc
+@Configuration
+@ComponentScan(basePackages = "academy.learnprogramming")
+public class WebConfig {
+
+    // constants
+    public static final String RESOLVER_PREFIX = "/WEB-INF/view/";
+    public static final String RESOLVER_SUFFIX = ".jsp";
+
+    // beans
+    @Bean
+    public ViewResolver viewResolver() {
+        UrlBasedViewResolver viewResolver = new InternalResourceViewResolver();
+        viewResolver.setPrefix(RESOLVER_PREFIX);
+        viewResolver.setSuffix(RESOLVER_SUFFIX);
+        return viewResolver;
+    }
+}
+```
+
+### Models and Model Attributes
+
+`@ModelAttribute` - access the attributes in the .jsp file
+
+it is a key: value pair attribute 
+
+`[INFO ] a.l.controller.DemoController : welcome.jsp served model {user=Stevie}`
 
 

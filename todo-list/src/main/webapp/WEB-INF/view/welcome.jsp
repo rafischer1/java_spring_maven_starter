@@ -1,7 +1,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
-    <title>MAVEN WAR TODO LIST</title>
+    <title>MAVEN WAR TODO LIST - Welcome</title>
     <style>
         * {text-align: center;}
 
@@ -15,7 +15,7 @@
 <body>
 <div style="background: darkgrey; margin-top: -.10em; padding: .5%; border-bottom: 1px solid gold;" class="ui secondary menu">
     <a class="active item">
-       Bridge
+       JSP File Bridge
     </a>
     <a class="item">
         10 Forward
@@ -24,6 +24,7 @@
         Transport
     </a>
     <div class="right menu">
+    <h4>User: ${user}</h4>
         <div class="item">
             <div class="ui icon input">
                 <input type="text" placeholder="Computer...">
