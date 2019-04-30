@@ -174,4 +174,18 @@ it is a key: value pair attribute
 
 `[INFO ] a.l.controller.DemoController : welcome.jsp served model {user=Stevie}`
 
+`<h4>${welcomeMessage} User: ${user}</h4>`
+
+```java
+    @ModelAttribute("welcomeMessage")
+    public String welcomeMessage() {
+        log.info("welcome message called");
+        return "welcome to the world new application";
+    }
+```
+
+`@Service` - stereotype annotation scanned by Spring holding the business models to process data
+
+
+
 
