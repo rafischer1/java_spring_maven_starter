@@ -37,6 +37,7 @@ Step 1 - update the properties in pom.xml
 Step 2 - Maven WAR plugins
 Apache Maven WAR docs
 
+```xml
  <packaging>war</packaging>
 
    <plugin>
@@ -62,16 +63,23 @@ Apache Maven WAR docs
              |-- index.jsp
              `-- jsp
                  `-- websource.jsp
+```
+
 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-war-plugin:3.2.0:war (default-war) on project todo-list: Error assembling WAR: webxml attribute is required (or pre-existing WEB-INF/web.xml if executing in update mode) -> [Help 1]
+
+```xml
 
 <!-- Add to plugin in pom.xml -->
 
   <configuration>
      <failOnMissingWebXml>false</failOnMissingWebXml>
    </configuration>
+```
+
 Step 3 - Maven Cargo plugin - run tomcat in embedded mode
 Cargo Maven2 Plugin
 
+```xml
    <plugin>
      <groupId>org.codehaus.cargo</groupId>
      <artifactId>cargo-maven2-plugin</artifactId>
@@ -83,6 +91,8 @@ Cargo Maven2 Plugin
        </container>
      </configuration>
    </plugin>
+```
+
 cargo:run will start the localhost using the tomcat servlet
 
 http://localhost:8080/todo-list/index.html
@@ -93,6 +103,7 @@ Setting up the MVC servlet with a Java code based approach to register dispatche
 
 Java -> WebConfig.java
 
+```java
 @EnableWebMvc - [allows registers and bean specific to SpringMVC]
 @Configuration
 @ComponentScan(basePackages = "academy.learnprogramming")
@@ -104,6 +115,9 @@ public class WebConfig {
    <version>${servlet-api-version}</version>
    <scope>provided</scope>
 </dependency>
+
+```
+
 CRUD Mapping in Spring
 @Controller is the annotation that handles the incoming requests @RequestMapping - media types, headers, http control CRUD maps
 
@@ -112,6 +126,8 @@ must define a view to display back to users
 errror: Message Circular view path [hello]: would dispatch back to the current handler URL [/todo-list/hello] again. Check your ViewResolver setup! (Hint: This may be the result of an unspecified view, due to default view name generation.)
 
 Disptacher servlet gets the request and passes it to the Controller to write directly to response body
+
+```java
 
 @Controller
 public class DemoController {
@@ -123,6 +139,8 @@ public class DemoController {
         return "hello";
     }
 }
+```
+
 Views with ViewResolver
 mapping between view names and JSP - java server pages
 
@@ -153,6 +171,8 @@ it is a key: value pair attribute
 
 [INFO ] a.l.controller.DemoController : welcome.jsp served model {user=Stevie}
 
+```haskell
+
 <h4>${welcomeMessage} User: ${user}</h4>
 
     @ModelAttribute("welcomeMessage")
@@ -160,6 +180,37 @@ it is a key: value pair attribute
         log.info("welcome message called");
         return "welcome to the world new application";
     }
+```
+
 @Service - stereotype annotation scanned by Spring holding the business models to process data
 
+Lombok - generate boilerplate code
+@Data - generates POJO objecte which combines a lot of these following annotations
 
+@Getter - Lombok automatically generates the getter
+
+@Setter - Lombok automatically generated the setter
+
+@ToString - toString() method
+
+@EqualsAndHashCode - equals() and hashCode() methods
+
+@RequiredArgsConstructor - constructor with required arguments
+
+@Slf4j - private final static field for Logger
+
+```java
+@Component
+@Slf4j
+@Getter
+public class GameIMPL implements Game {
+
+    // fields
+    @Getter(AccessLevel.NONE)
+    private final NumberGenerator numberGenerator;
+
+    @Setter
+    private int guess;
+
+    ... }
+```
