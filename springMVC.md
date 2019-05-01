@@ -186,6 +186,20 @@ it is a key: value pair attribute
 
 `@Service` - stereotype annotation scanned by Spring holding the business models to process data
 
+### Request Parameters
 
+[@RequestParam Docs](https://www.baeldung.com/spring-request-param)
+
+```java
+
+   // http://localhost:8080/todo-list/welcome?user=Troi&age=28
+    @GetMapping("welcome")
+    public String welcome(@RequestParam String user, @RequestParam int age, Model model) {
+        model.addAttribute("helloMessage", demoService.getHelloMessage(user));
+        model.addAttribute("age", age);
+        log.info("welcome.jsp served model {}", model);
+        return "welcome";
+    }
+```
 
 

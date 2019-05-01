@@ -24,7 +24,7 @@
         Transport
     </a>
     <div class="right menu">
-    <h4>${welcomeMessage} User: ${helloMessage}</h4>
+    <h4>${welcomeMessage} User: ${helloMessage} Age: ${age}</h4>
         <div class="item">
             <div class="ui icon input">
                 <input type="text" placeholder="Computer...">
