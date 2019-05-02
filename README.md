@@ -2,6 +2,17 @@
 
 ## Refer to the markdown in the project file for more information on info and project setup notes
 
+[Oracle Java SE Docs](https://docs.oracle.com/en/java/index.html)
+
+[W3C Java Docs](https://www.w3schools.com/java/default.asp)
+
+[Spring Guides](https://spring.io/guides)
+
+[Apache Maven Docs](https://maven.apache.org/guides/index.html)
+
+[Thymeleaf Docs](https://www.thymeleaf.org/documentation.html)
+
+
 ---
 
 ### Java notes:
