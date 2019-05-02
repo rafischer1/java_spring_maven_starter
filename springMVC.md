@@ -202,4 +202,198 @@ it is a key: value pair attribute
     }
 ```
 
+### ToDo List items w and w/o Lombok
+
+```java
+// without lombok
+
+public class TodoItem {
+
+    // fields
+    private int id;
+    private String title;
+    private String details;
+    private LocalDate deadline;
+
+// constructor
+    public TodoItem(String title, String details, LocalDate deadline) {
+        this.title = title;
+        this.details = details;
+        this.deadline = deadline;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
+
+    public LocalDate getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(LocalDate deadline) {
+        this.deadline = deadline;
+    }
+
+    // equals and hash code check
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TodoItem)) return false;
+
+        TodoItem todoItem = (TodoItem) o;
+
+        return id == todoItem.id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "TodoItem{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", details='" + details + '\'' +
+                ", deadline=" + deadline +
+                '}';
+    }
+}
+```
+
+[@Data annotation docs - Lombok](https://projectlombok.org/features/Data)
+
+
+```java
+// with lombok for getters/setters/tostring/hash/and check
+
+@Data
+@EqualsAndHashCode(of = "id")
+public class TodoItem {
+
+    // fields
+    private int id;
+    private String title;
+    private String details;
+    private LocalDate deadline;
+
+    // constructor
+    public TodoItem(String title, String details, LocalDate deadline) {
+        this.title = title;
+        this.details = details;
+        this.deadline = deadline;
+    }
+
+}
+```
+
+### CRUD Routes!
+
+```java
+public class TodoData {
+
+    //fields
+    private static int idValue = 1;
+
+    private final List<TodoItem> items = new ArrayList<>();
+
+    // constructor
+    public TodoData() {
+    }
+
+    // ==public CRUD methods==
+
+    // Get All
+    public List<TodoItem> getItems() {
+        return Collection.unmodifiableList(items);
+    }
+
+    // getOne
+    public TodoItem getItem(int id) {
+        for (TodoItem item : items) {
+            if (item.getId() == id) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    // Create
+    public void addItems(@NonNull TodoItem toAdd) {
+        toAdd.setId(idValue);
+        items.add(toAdd);
+        idValue++;
+    }
+
+    // Update
+    public void updateItem(@NonNull TodoItem toUpdate) {
+        ListIterator<TodoItem> itemIterator = items.ListIterator();
+
+        while (itemIterator.hasNext()) {
+            TodoItem item = itemIterator.next();
+
+            if (item.equals(toUpdate)) {
+                itemIterator.set(toUpdate);
+                break;
+            }
+        }
+    }
+
+    // Delete
+    public static void removeItem(int id) {
+        ListIterator<TodoItem> itemIterator = items.ListIterator();
+
+        while (itemIterator.hasNext()) {
+            TodoItem item = itemIterator.next();
+
+            if (item.getId() == id) {
+                itemIterator.remove();
+                break;
+            }
+        }
+    }
+
+
+}
+```
+
+### JSP file and JSTL tags - standard tag library for control flow
+
+[JSTL Oracle Docs](https://docs.oracle.com/javaee/5/jstl/1.1/docs/tlddocs/)
+
+`<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>`
+
+```xml
+<c:forEach var="item" items="${todoData.items}">
+    <tr>
+        <td><c:out value="${item.title}" /></td>
+        <td><c:out value="${item.deadline}" /></td>
+    </tr>
+</c:forEach>
+```
+
+
+
 
