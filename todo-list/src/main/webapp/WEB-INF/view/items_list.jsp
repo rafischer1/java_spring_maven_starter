@@ -11,6 +11,23 @@
         color: white;
        }
 
+       table {
+        border: 2px outset white;
+        font-family: Montserrat, sans-serif;
+        border-radius: 5px;
+       }
+
+       .tableHeading {
+        background-color: darkgrey;
+        color: white;
+        border-bottom: 2px solid white;
+       }
+
+       td {
+        background-color: #E8914C;
+        border-bottom: 1px dashed darkgrey;
+       }
+
     </style>
 </head>
 <body>
@@ -67,11 +84,12 @@
         </div>
     <div class="todoList">
         <table class="border="1" cellpadding="5">
-            <caption><h2>ToDo Items</h2></caption>
+            <caption>Enterprise D To Do List</caption>
+            <br />
             <tr>
-                <th>Title</th>
-                <th>Task</th>
-                <th>Deadline</th>
+                <th class="tableHeading">Title</th>
+                <th class="tableHeading">Task</th>
+                <th class="tableHeading">Deadline</th>
             </tr>
             <c:forEach var="item" items="${todoData.items}">
 
