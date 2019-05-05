@@ -242,4 +242,4 @@ public class GameIMPL implements Game {
 
 * Set high standards for code quality. The Spring Framework puts a strong emphasis on meaningful, current, and accurate javadoc. It is one of very few projects that can claim clean code structure with no circular dependencies between packages.
 
-
+[📘 Serving Static Files Example](https://www.boraji.com/spring-mvc-5-static-resources-handling-example)

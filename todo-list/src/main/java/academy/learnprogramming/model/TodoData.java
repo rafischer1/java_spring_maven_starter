@@ -19,6 +19,7 @@ public class TodoData {
         addItem(new TodoItem("second", "Holodeck Training", LocalDate.now()));
         addItem(new TodoItem("third", "Relax in 10 Forward", LocalDate.now()));
         addItem(new TodoItem("fourth", "Upgrade Phaser Array Efficiency", LocalDate.now()));
+        addItem(new TodoItem("fifth", "Realign Subspace Communication Signal", LocalDate.now()));
 
     }
 
