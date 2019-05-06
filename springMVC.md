@@ -394,6 +394,48 @@ public class TodoData {
 </c:forEach>
 ```
 
+### Spring Form Tags
+
+`<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>`
+
+redirecting the view to another URL w/ the items table
+
+```java
+   // post redirect GET method
+    @PostMapping(Mappings.ADD_ITEM)
+    public String processItem(@ModelAttribute(AttributeNames.TODO_ITEM) TodoItem todoItem) {
+        return "redirect:/" + Mappings.ITEMS;
+    }
+```
+
+```jsp
+<%@ import="academy.learnprogramming.util.AttributeNames" %>
+
+<form:form method="POST" modelAttribute="${AttributeName.TODO_ITEM}"
+
+</form:form>
+```
+
+#### Mapping and Posting routes referencing view names and attribute class
+
+```java
+  @GetMapping(Mappings.ADD_ITEM)
+    public String addEditItem(Model model) {
+        TodoItem todoItem = new TodoItem("", "", LocalDate.now());
+        model.addAttribute(AttributeNames.TODO_ITEM, todoItem);
+        return ViewNames.ADD_ITEM;
+    }
+
+    // post redirect GET method
+    @PostMapping(Mappings.ADD_ITEM)
+    public String processItem(@ModelAttribute(AttributeNames.TODO_ITEM) TodoItem todoItem) {
+        log.info("todoItem from form = {}", todoItem);
+        todoItemService.addItem(todoItem);
+        return "redirect:/" + Mappings.ITEMS;
+    }
+```
+
+
 
 
 
