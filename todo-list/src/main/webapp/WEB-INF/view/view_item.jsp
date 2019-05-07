@@ -1,12 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="academy.learnprogramming.util.Mappings" %>
+
 <html>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-
-
-    <title>MAVEN WAR TODO Items LIST - Todo List</title>
+    <title>MAVEN WAR TODO Items LIST - View Item</title>
     <style>
         * {text-align: center;}
 
@@ -86,48 +84,35 @@
                 First Officer
             </div>
         </div>
-        <c:url var="addUrl" value="${Mappings.ADD_ITEM}" />
-                <h3><a href="${addUrl}">Add Task <i class="fas fa-plus-circle"></i></a></h3>
     <div class="todoList">
 
-
-
-        <table class="border="1" cellpadding="5">
-            <caption>Enterprise D To Do List</caption>
-            <br />
+            <table>
             <tr>
-                <th class="tableHeading">Title</th>
-                <th class="tableHeading">Task</th>
-                <th class="tableHeading">Deadline</th>
-                <th class="tableHeading">View</th>
-                <th class="tableHeading">Edit</th>
-                <th class="tableHeading">Delete</th>
+                <td><label>Id</label><td>
+                <td>
+                    <c:out value="${todoItem.id}" />
+                </td>
             </tr>
-            <c:forEach var="item" items="${todoData.items}">
+                <td><label>Title</label><td>
+                <td>
+                    <c:out value="${todoItem.title}" />
+                </td>
+            <tr>
+                 <td><label>Deadline</label><td>
+                 <td>
+                    <c:out value="${todoItem.deadline}" />
+                 </td>
+            </tr>
+                 <td><label>Details</label><td>
+                 <td>
+                    <c:out value="${todoItem.details}" />
+                 </td>
 
-             <c:url var="viewUrl" value="${Mappings.VIEW_ITEM}">
-                <c:param name="id" value="${item.id}" />
-             </c:url>
+            </table>
 
-             <c:url var="editUrl" value="${Mappings.ADD_ITEM}">
-                <c:param name="id" value="${item.id}" />
-              </c:url>
+            <c:url var="tableUrl" value="${Mappings.ITEMS}" />
+            <h2><a href="${tableUrl}">Back to Table</a></h2>
 
-                <c:url var="deleteUrl" value="${Mappings.DELETE_ITEM}">
-                    <c:param name="id" value="${item.id}" />
-                </c:url>
-
-                <tr>
-                    <td><c:out value="${item.title}" /></td>
-                    <td><c:out value="${item.details}" /></td>
-                    <td><c:out value="${item.deadline}" /></td>
-                    <td><a href="${viewUrl}"><i class="fas fa-binoculars"></i></a></td>
-                    <td><a href="${editUrl}"><i class="fas fa-user-edit"></i></a></td>
-                    <td><a href="${deleteUrl}"><i class="fas fa-trash"></i></a></td>
-
-                </tr>
-            </c:forEach>
-        </table>
     </div>
 
     </div>

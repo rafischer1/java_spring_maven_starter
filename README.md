@@ -286,11 +286,33 @@ public class GameIMPL implements Game {
         
         return "redirect:/" + Mappings.ITEMS;
     }
+
     @GetMapping(Mappings.DELETE_ITEM)
     public String deleteItem(@RequestParam int id) {
         log.info("Delete item id = {}", id);
         todoItemService.removeItem(id);
         return "redirect:/" + Mappings.ITEMS;
     }
+
+     @GetMapping(Mappings.VIEW_ITEM)
+    public String viewItem(@RequestParam int id, Model model) {
+        TodoItem todoItem = todoItemService.getItem(id);
+        model.addAttribute(AttributeNames.TODO_ITEM, todoItem);
+        return ViewNames.VIEW_ITEM;
+    }
 ```
+
+### Spring Boot 2
+
+> almost everything is auto-configured in the framework
+
+* starters - modules to quickly get you configured with most commonly used libraries
+
+* create a self-container JAR application with an embedded servlet container
+
+* Initialzr - create Spring Boot apps from scratch - add dependencies - download and open - 🥧
+
+[Initialzr Page](https://start.spring.io/)
+
+
 
