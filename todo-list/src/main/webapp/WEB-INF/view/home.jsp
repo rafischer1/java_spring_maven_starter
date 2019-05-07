@@ -1,7 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="academy.learnprogramming.util.Mappings" %>
 <html>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
-    <title>MAVEN WAR TODO LIST</title>
+    <title>Home : Todo List Application</title>
     <style>
         * {text-align: center;}
 
@@ -10,12 +12,29 @@
         color: white;
        }
 
+       table {
+        border: 2px outset white;
+        font-family: Montserrat, sans-serif;
+        border-radius: 5px;
+       }
+
+       .tableHeading {
+        background-color: darkgrey;
+        color: white;
+        border-bottom: 2px solid white;
+       }
+
+       td {
+        background-color: #E8914C;
+        border-bottom: 1px dashed darkgrey;
+       }
+
     </style>
 </head>
 <body>
 <div style="background: darkgrey; margin-top: -.10em; padding: .5%; border-bottom: 1px solid gold;" class="ui secondary menu">
     <a class="active item">
-       Bridge
+       JSP File Bridge
     </a>
     <a class="item">
         10 Forward
@@ -24,6 +43,7 @@
         Transport
     </a>
     <div class="right menu">
+    <h4>${welcomeMessage} User: ${helloMessage} Age: ${age}</h4>
         <div class="item">
             <div class="ui icon input">
                 <input type="text" placeholder="Computer...">
@@ -63,6 +83,11 @@
                 First Officer
             </div>
         </div>
+    <div class="todoList">
+        <c:url var="itemsLink" value="${Mappings.ITEMS}" />
+        <h2><a href="${itemsLink}">Show Todo List</a></h2>
+    </div>
+
     </div>
 </body>
 

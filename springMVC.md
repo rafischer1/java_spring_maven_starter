@@ -435,7 +435,17 @@ redirecting the view to another URL w/ the items table
     }
 ```
 
+#### implementing WebMvcConfigurer
 
+> enables webMVC annotation with default methods to customize configurations
 
+```java
+// preconfigured paths to the home view w/o having to create a controller combing the VC into one method
+
+ @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName(ViewNames.HOME);
+    }
+```
 
 

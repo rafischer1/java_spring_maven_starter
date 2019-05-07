@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="academy.learnprogramming.util.Mappings" %>
 <html>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
@@ -82,7 +83,12 @@
                 First Officer
             </div>
         </div>
+        <c:url var="addUrl" value="${Mappings.ADD_ITEM}" />
+                <h3><a href="${addUrl}">Add Item</a></h3>
     <div class="todoList">
+
+
+
         <table class="border="1" cellpadding="5">
             <caption>Enterprise D To Do List</caption>
             <br />
@@ -90,13 +96,26 @@
                 <th class="tableHeading">Title</th>
                 <th class="tableHeading">Task</th>
                 <th class="tableHeading">Deadline</th>
+                <th class="tableHeading">Edit</th>
+                <th class="tableHeading">Delete</th>
             </tr>
             <c:forEach var="item" items="${todoData.items}">
+
+             <c:url var="editUrl" value="${Mappings.ADD_ITEM}">
+                <c:param name="id" value="${item.id}" />
+              </c:url>
+
+                <c:url var="deleteUrl" value="${Mappings.DELETE_ITEM}">
+                    <c:param name="id" value="${item.id}" />
+                </c:url>
 
                 <tr>
                     <td><c:out value="${item.title}" /></td>
                     <td><c:out value="${item.details}" /></td>
                     <td><c:out value="${item.deadline}" /></td>
+                    <td><a href="${editUrl}">Edit</a></td>
+                    <td><a href="${deleteUrl}">X</a></td>
+
                 </tr>
             </c:forEach>
         </table>

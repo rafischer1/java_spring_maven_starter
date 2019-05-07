@@ -243,3 +243,54 @@ public class GameIMPL implements Game {
 * Set high standards for code quality. The Spring Framework puts a strong emphasis on meaningful, current, and accurate javadoc. It is one of very few projects that can claim clean code structure with no circular dependencies between packages.
 
 [📘 Serving Static Files Example](https://www.boraji.com/spring-mvc-5-static-resources-handling-example)
+
+### CRUD Routes in `TodoItemController` class
+
+```java
+
+   // model attributes
+    @ModelAttribute
+    public TodoData todoData() {
+        return todoItemService.getData();
+    }
+
+    // handler method for items
+    @GetMapping(Mappings.ITEMS)
+    public String items() {
+        return ViewNames.ITEMS_LIST;
+    }
+
+  @GetMapping(Mappings.ADD_ITEM)
+    public String addEditItem(@RequestParam(required = false, defaultValue = "-1") int id,  Model model) {
+        log.info("Edit id = {}", id);
+        TodoItem todoItem = todoItemService.getItem(id);
+
+        if (todoItem == null) {
+            todoItem = new TodoItem("", "", LocalDate.now());
+        }
+
+        model.addAttribute(AttributeNames.TODO_ITEM, todoItem);
+        return ViewNames.ADD_ITEM;
+    }
+
+    // post redirect GET method
+    @PostMapping(Mappings.ADD_ITEM)
+    public String processItem(@ModelAttribute(AttributeNames.TODO_ITEM) TodoItem todoItem) {
+        log.info("todoItem from form = {}", todoItem);
+
+        if (todoItem.getId() == 0) {
+            todoItemService.addItem(todoItem);
+        } else {
+            todoItemService.updateItem(todoItem);
+        }
+        
+        return "redirect:/" + Mappings.ITEMS;
+    }
+    @GetMapping(Mappings.DELETE_ITEM)
+    public String deleteItem(@RequestParam int id) {
+        log.info("Delete item id = {}", id);
+        todoItemService.removeItem(id);
+        return "redirect:/" + Mappings.ITEMS;
+    }
+```
+
