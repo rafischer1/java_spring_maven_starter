@@ -314,5 +314,55 @@ public class GameIMPL implements Game {
 
 [Initialzr Page](https://start.spring.io/)
 
+---
+
+## Integrating Spring Boot into an existing project
+
+* add the Spring Boot `<parent>` to the project level `pom.xml`
+
+```xml
+# get rid of all dependencies and build tags and add the following above modules tags w/ the relativePath tag to override maven controls
+
+  <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.4.RELEASE</version>
+        <relativePath />
+    </parent>
+```
+
+* rename the logback file to`logback-spring.xml`
+
+* in the console module: add the spring.boot.maven plugin
+
+```xml
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+```
+
+* add `application.properties` file to the console module and enable ansi logging
+
+`spring.output.ansi.enabled = "always"`
+
+* refactor Main class to run app from spring boot
+
+```java
+@Slf4j
+@SpringBootApplication
+public class Main {
+    public static void main(String[] args) {
+        log.info("Guess that number!");
+        SpringApplication.run(Main.class, args);
+    }
+}
+```
+
+
 
 
