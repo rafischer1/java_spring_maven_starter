@@ -363,6 +363,79 @@ public class Main {
 }
 ```
 
+## Adding a web Spring Web module to an existing project
+
+* create a maven web module with interface and controller
+
+* add project core and `spring-boot-starter-web` dependencies and `spring-boot-maven-plugin` build plugin
+
+---
+
+## Thymeleaf 🍃
+
+[Extensible Template Engine Docs](https://www.thymeleaf.org/documentation.html)
+
+* templating with HTML files with thymeleaf attributes
+
+* Decoupled Template Logic: seperate TL tags from the HTML
+
+---
+
+## Gradle 👼
+
+> builds upon apache.ant and apache.maven and has a DSL file for project builds - does not reexecute parts of applications that are not updated, official build tool for Android Studio, extensible, better unit testing and continous build
+
+* **TASKS** - similar to a Maven Goal - an atomic piece of work to build projects
+
+* to build the project run the `Gradle Build` script - `> Task :compileJava UP-TO-DATE`
+
+Initialization -> Configuration -> Execution 
+
+* Base Plugin has the common tasks (`clean`)
+
+* Java Plugin has testing functionality and assumes same layout as with Maven
+
+`build.gradle` script in `groovy`
+
+```groovy
+plugins {
+	id 'org.springframework.boot' version '2.1.5.RELEASE'
+	id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'java'
+
+group = 'academy.learnprogramming'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+```
+
+
+
+
+
 
 
 
